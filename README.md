@@ -9,3 +9,5 @@ My Personal Portfolio Website
 | Lightweight and easy to customize.                                                                                                                | May not align with a minimalist design and it can be difficult to create a clean and simple look with Bootstrap.                                    |
 
 ***
+
+<!-- Please keep in mind that GitHub markdown uses --- to create horizontal lines as well, but it's used for creating tables and it's not recommended to use it as a separator between sections. -->
