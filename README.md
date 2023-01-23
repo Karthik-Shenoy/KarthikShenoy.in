@@ -10,7 +10,7 @@ My Personal Portfolio Website
 | Lightweight and easy to customize.                                                                                                                | May not align with a minimalist design and it can be difficult to create a clean and simple look with Bootstrap.                                    |
 
 ***
-#Why React ?
+# Why React ?
 ***
 React is a JavaScript library that can be a good choice for building a website, especially if you want a highly interactive and dynamic website. It allows you to build your website as a collection of reusable components, it has a virtual DOM for performance optimization, it is flexible, scalable, and widely adopted.
 Compared to other frameworks, React is particularly well suited for building complex and highly interactive user interfaces. Other frameworks such as Angular and Vue.js also provide reusable components, however, React's implementation of the virtual DOM and its focus on the component-based architecture make it particularly well-suited for building large, complex applications with changing data.
