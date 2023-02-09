@@ -1,0 +1,20 @@
+@media (min-width: 992px) {
+    #cta-img-nml-x {
+        margin-left: -50px;
+    }
+    #cta-img-nml-50 {
+        margin-left: 50px;
+    }
+}
+
+#cta-text-div {
+    z-index: 1;
+}
+
+#cta-img-nml-x {
+    z-index: 2;
+}
+
+#cta-img-nml-50 {
+    z-index: 2;
+}
