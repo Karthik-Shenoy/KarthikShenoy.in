@@ -1,0 +1,16 @@
+@media screen and (min-width: 690px) {
+    .res-card{
+        width:  100%;
+    }
+}
+
+@media screen and (min-width: 740px) {
+    .res-card{
+        width:  47%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .res-card{
+        width:  30%;
+    }
+}
