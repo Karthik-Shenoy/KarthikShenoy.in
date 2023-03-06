@@ -55,11 +55,35 @@ db.resources.updateOne(
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.",
                 image: "https://i.postimg.cc/q6t4kh8k/linked-list.png",
                 link: ""
-            }]
+            },
+            {
+                title: "Recursion And Backtracking",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.",
+                image: "https://i.postimg.cc/q6t4kh8k/linked-list.png",
+                link: ""
+            },
+            {
+                title: "Dynamic Programming",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.",
+                image: "https://i.postimg.cc/q6t4kh8k/linked-list.png",
+                link: ""
+            },
+            {
+                title: "Greedy Algorithms",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.",
+                image: "https://i.postimg.cc/q6t4kh8k/linked-list.png",
+                link: ""
+            },
+            {
+                title: "Binary Trees",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.",
+                image: "https://i.postimg.cc/q6t4kh8k/linked-list.png",
+                link: ""
+            }
+        ]
         }
     },
     false,
     true
 )
-
 */

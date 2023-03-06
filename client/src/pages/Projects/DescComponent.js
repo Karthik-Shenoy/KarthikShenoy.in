@@ -31,7 +31,8 @@ function DescComponent(props) {
                                 <img className="max-w-[150px] max-h-[150px]" src="https://i.postimg.cc/k68vLhfn/coding.png" />
                             </div>
                             <div className="max-w-[600px] flex justify-center justify-self-center">
-                                <p className="break-words">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.
+                                <p className="break-words">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non suscipit eros.

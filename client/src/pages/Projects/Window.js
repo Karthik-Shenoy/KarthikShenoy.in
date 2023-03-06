@@ -30,8 +30,8 @@ function Window(props) {
           </div>
           
           <div className="flex flex-row m-3 items-start">
-            <Folder title="description" handleClick={handleClick} textColor="black"/>
-            <Folder title="git repository link" handleClick={handleClick} textColor="black"/>
+            <Folder title="description" handleClick={handleClick} textColor="black" image="https://i.postimg.cc/N9QN1QR6/description.png"/>
+            <Folder title="git repository link" handleClick={handleClick} textColor="black" image="https://i.postimg.cc/pmf069VN/github-logo.png" link="https://github.com/Karthik-Shenoy/Data_Structures_And_Algorithms"/>
           </div>
         </div>
       </div>
