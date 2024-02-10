@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage/HomePage';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Projects from './pages/Projects/Projects';
+import { BlogPage } from './pages/BlogPage/BlogPage';
 // import ResourcePage from './pages/ResourcePage/ResourcePage';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/projects" element={<Projects />} />
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/resources" element = {<ResourcePage/>} /> */}
+          <Route path="/resources" element = {<BlogPage/>} />
           {/* <Route path="/resources/single" element={<ResourcePage/>} /> */}
         </Routes>
         <Footer />
