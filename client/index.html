@@ -1,48 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vite + React + TS</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- Tail Wind CSS -->
-        <link
-            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-            rel="stylesheet"
-        />
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-            crossorigin="anonymous"
-        />
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            beige: {
-                                50: "#F3EFEC",
-                                100: "#F1ECE9",
-                                200: "#ECE4DF",
-                                300: "#E8DFD9",
-                                400: "#E2D7D0",
-                                500: "#DDD0C8",
-                                600: "#BDA494",
-                                700: "#9E7861",
-                                800: "#685040",
-                                900: "#362921",
-                            },
-                        },
-                    },
-                },
-            };
-        </script>
-    </head>
-    <body>
-        <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" type="" href="/Loader/loaderStyles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body id="app" class="loader-container">
+    <div id="spinner" class="loading-spinner"></div>
+    <div id="root"></div>
+    <script type="module" src="/Loader/loaderScript.js"></script>
+    <script id="app-script" type="module" src="/src/main.tsx" defer></script>
+  </body>
 </html>

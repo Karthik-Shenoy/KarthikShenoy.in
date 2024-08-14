@@ -1,0 +1,26 @@
+/* Keep the colors consistent with the app/global.css */
+.loader-container {
+    background-color: hsl(224 71.4% 4.1%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Keep the colors consistent with the app/global.css */
+.loading-spinner {
+    pointer-events: none;
+    width: 2.5em;
+    height: 2.5em;
+    border: 0.4em solid transparent;
+    border-color: #eee;
+    border-top-color: hsl(256, 90%, 49%);
+    border-radius: 50%;
+    animation: loading-spin 1s linear infinite;
+}
+
+@keyframes loading-spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

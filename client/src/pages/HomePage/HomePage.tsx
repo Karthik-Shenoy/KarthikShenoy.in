@@ -1,17 +1,6 @@
-import React from 'react';
-import './HomePage.css'
-import HpcFirst from './HpcFirst';
-import HpcParallaxFirst from './HpcParallaxFirst';
-import HpcSecond from './HpcSecond';
-export default function HomePage() {
-    return (
-        <>
-            <div className="flex flex-col flex-none w-screen">
-                <HpcParallaxFirst/>
-                <HpcFirst />
-                <HpcSecond />
-            </div>
-        </>
-    );
-}
+import * as React from "react";
+import HeroMainSection from "./HeroMainSection/HeroMainSection";
 
+export const HomePage: React.FC<{}> = () => {
+    return <HeroMainSection />;
+};

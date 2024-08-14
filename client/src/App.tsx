@@ -1,31 +1,29 @@
-import './App.css';
-import NavBar from './components/NavBar/NavBar';
-import HomePage from './pages/HomePage/HomePage';
-import Footer from './components/Footer/Footer';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Projects from './pages/Projects/Projects';
-import { BlogPage } from './pages/BlogPage/BlogPage';
-// import ResourcePage from './pages/ResourcePage/ResourcePage';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "./AppComponents/Navbar/Navbar";
+import { AppContextProvider } from "./Contexts/AppContext";
+import { ThemeProvider } from "./Contexts/ThemeProvider";
+import { HomePage } from "./Pages/HomePage/HomePage";
+import { PostsPage } from "./Pages/PostsPage/PostsPage";
+import { BasePage } from "./Pages/BasePage/BasePage";
 
 function App() {
-
-  return (
-    <>
-     <BrowserRouter>
-      <div className="min-h-screen App flex flex-col">
-        <NavBar />
-        <Routes>
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/resources" element = {<BlogPage/>} />
-          {/* <Route path="/resources/single" element={<ResourcePage/>} /> */}
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
-      
-    </>
-  )
+    return (
+        <ThemeProvider>
+            <AppContextProvider>
+                <BrowserRouter>
+                    <div className="relative flex min-h-screen  max-w-[100vw] flex-col bg-background justify-center items-center">
+                        <Navbar />
+                        <BasePage>
+                            <Routes>
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/posts" element={<PostsPage />} />
+                            </Routes>
+                        </BasePage>
+                    </div>
+                </BrowserRouter>
+            </AppContextProvider>
+        </ThemeProvider>
+    );
 }
 
-export default App
+export default App;
