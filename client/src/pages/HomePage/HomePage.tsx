@@ -1,6 +1,6 @@
 import * as React from "react";
-import HeroMainSection from "./HeroMainSection/HeroMainSection";
+import MainSection from "./MainSection/MainSection";
 
 export const HomePage: React.FC<{}> = () => {
-    return <HeroMainSection />;
+    return <MainSection />;
 };

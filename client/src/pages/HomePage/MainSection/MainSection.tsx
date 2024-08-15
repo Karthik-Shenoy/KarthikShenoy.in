@@ -11,12 +11,13 @@ import { FlexItem } from "../../../SharedComponents/FlexIBox/FlexItem";
 import { useTheme } from "../../../Contexts/ThemeProvider";
 import { BadgeWrapper } from "../../../SharedComponents/Badges/Badge";
 import { Image } from "../../../SharedComponents/Image/Image";
+import { GridDiv } from "../../../SharedComponents/Grid/GridDiv";
 
 const StringsManager = {
     HeroMainSectionTitle: "Bits About Me",
 };
 
-const HeroMainSection: React.FC = () => {
+const MainSection: React.FC = () => {
     const [title, setTitle] = React.useState<string>(StringsManager.HeroMainSectionTitle);
     const intervalCallbackRef = React.useRef<NodeJS.Timeout>();
 
@@ -74,20 +75,24 @@ const HeroMainSection: React.FC = () => {
                     </CardHeader>
                     <CardFooter>
                         <FlexDiv className="desktop:gap-x-4 gap-y-4 desktop:flex-row flex-col">
-                            <CardTitle
-                                className="desktop:text-xl text-md w-fit hover:text-primary border-b-primary border-b-4  duration-300"
-                                onMouseEnter={titleMouseEnterHandler}
-                                onMouseLeave={titleMouseLeaveHandler}
-                            >
-                                My Interests
-                            </CardTitle>
-                            <FlexDiv horizontal={true} className="gap-x-2 ">
-                                <BadgeWrapper>C++</BadgeWrapper>
-                                <BadgeWrapper>TypeScript</BadgeWrapper>
-                                <BadgeWrapper>Go</BadgeWrapper>
-                                <BadgeWrapper>Rust</BadgeWrapper>
-                                <BadgeWrapper>Distributed Systems</BadgeWrapper>
-                            </FlexDiv>
+                            <FlexItem>
+                                <CardTitle
+                                    className="desktop:text-xl text-md w-fit hover:text-primary border-b-primary border-b-4  duration-300"
+                                    onMouseEnter={titleMouseEnterHandler}
+                                    onMouseLeave={titleMouseLeaveHandler}
+                                >
+                                    My Interests
+                                </CardTitle>
+                            </FlexItem>
+                            <FlexItem>
+                                <GridDiv className="desktop:grid-cols-4 grid-cols-2 ">
+                                    <BadgeWrapper>C++</BadgeWrapper>
+                                    <BadgeWrapper>TypeScript</BadgeWrapper>
+                                    <BadgeWrapper>Go</BadgeWrapper>
+                                    <BadgeWrapper>Rust</BadgeWrapper>
+                                    <BadgeWrapper>Distributed Systems</BadgeWrapper>
+                                </GridDiv>
+                            </FlexItem>
                         </FlexDiv>
                     </CardFooter>
                 </Card>
@@ -107,10 +112,10 @@ const HeroMainSection: React.FC = () => {
     );
 };
 
-export default HeroMainSection;
+export default MainSection;
 
 /**
- * Lunches
+ * launches a random binary filler animation on the given title
  */
 const randomBinaryFillerAnimation = (
     title: string,

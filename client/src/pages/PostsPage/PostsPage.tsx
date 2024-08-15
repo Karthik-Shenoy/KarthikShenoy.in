@@ -12,7 +12,7 @@ export const PostsPage: React.FC = () => {
         <AppContextConsumer>
             {({ appState }) => {
                 return (
-                    <FlexDiv className={"justify-start "}>
+                    <FlexDiv className={"justify-start p-2"}>
                         <FlexItem>
                             <h1 className="scroll-m-20 mb-8  font-extrabold tracking-tight w-[60vw] desktop:text-4xl text-3xl">
                                 {
