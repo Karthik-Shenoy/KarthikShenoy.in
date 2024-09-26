@@ -12,7 +12,7 @@ import (
 const (
 	host     = "localhost"
 	port     = 5432
-	user     = "test"
+	user     = "postgres"
 	password = "12345678"
 	dbName   = "PortfolioWebSite"
 )
