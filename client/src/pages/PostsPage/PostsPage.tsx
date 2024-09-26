@@ -1,8 +1,8 @@
 import * as React from "react";
-import { AppContextConsumer } from "../../Contexts/AppContext";
+import { AppContextConsumer } from "../../Contexts";
 import * as SharedConstants from "../SharedConstants";
-import { FlexDiv } from "../../SharedComponents/FlexIBox/FlexDiv";
-import { FlexItem } from "../../SharedComponents/FlexIBox/FlexItem";
+import { FlexDiv } from "../../SharedComponents/FlexBox/FlexDiv";
+import { FlexItem } from "../../SharedComponents/FlexBox/FlexItem";
 import { PostsCard } from "./PostsCard/PostsCard";
 import { posts } from "./PostsCard/PostsDummyData";
 import { GridDiv } from "../../SharedComponents/Grid/GridDiv";

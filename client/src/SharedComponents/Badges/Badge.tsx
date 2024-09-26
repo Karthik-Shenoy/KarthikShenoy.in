@@ -1,6 +1,6 @@
 import { cn } from "@shadcn-ui/lib/utils";
 import * as React from "react";
-import { useTheme } from "../../Contexts/ThemeProvider";
+import { useTheme } from "../../Contexts";
 import { Badge } from "@shadcn-ui/components/ui/badge";
 
 export type BadgeProps = {

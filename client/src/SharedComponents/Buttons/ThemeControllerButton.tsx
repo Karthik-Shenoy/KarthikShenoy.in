@@ -12,7 +12,7 @@ export const ThemeControllerButton: React.FC<{}> = () => {
     }, [theme]);
 
     return (
-        <Button onClick={clickHandler} variant={"transparent"}>
+        <Button onClick={clickHandler} variant={"transparent"} className="rounded-full">
             {theme === "dark" ? (
                 <Moon className="w-6 h-6 hover:stroke-cyan-800"></Moon>
             ) : (

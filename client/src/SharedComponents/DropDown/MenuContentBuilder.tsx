@@ -2,7 +2,7 @@ import * as React from "react";
 import { DropdownMenuContent, DropdownMenuItem } from "@shadcn-ui/components/ui/dropdown-menu";
 import { cn } from "@shadcn-ui/lib/utils";
 import { MenuItemsList } from "./DropDownMenu.types";
-import { FlexDiv } from "../FlexIBox/FlexDiv";
+import { FlexDiv } from "../FlexBox/FlexDiv";
 
 export type MenuContentBuilderProps = {
     menuItems: MenuItemsList;

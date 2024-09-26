@@ -4,7 +4,7 @@ import { DropDownTabsTrigger } from "../../SharedComponents/DropDownTabsTrigger/
 import { ThemeControllerButton } from "../../SharedComponents/Buttons/ThemeControllerButton";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postsNavMenuModel } from "./PostsNavMenuModel/PostsNavMenuModel";
-import { useAppContext } from "../../Contexts/AppContext";
+import { useAppContext } from "../../Contexts";
 import { PostPageKey } from "../../Pages/SharedConstants";
 import { MenuItemModel } from "../../SharedComponents/DropDown/DropDownMenu.types";
 
@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
 
     return (
         <>
-            <nav className="sticky top-4 z-50 flex items-center justify-center desktop:px-2 px-8 py-2 height-[56px] backdrop-blur-sm desktop:w-[80vw] w-[90vw] border-[1px] rounded-3xl mt-4 shadow-lg border-accent">
+            <nav className="sticky top-4 z-50 flex items-center gap-x-2 justify-center desktop:px-2 px-8 py-2 height-[56px] backdrop-blur-sm desktop:w-[80vw] w-[90vw] border-[1px] rounded-3xl mt-4 shadow-lg border-accent">
                 <Tabs onValueChange={onTabValueChange} value={currentTab}>
                     <TabsList className="desktop:gap-x-4 px-4 py-6">
                         <TabsTrigger value="">Home</TabsTrigger>

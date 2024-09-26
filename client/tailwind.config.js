@@ -19,6 +19,7 @@ module.exports = {
     },
     screens:{
       desktop: "1200px",
+      tab: "768px",
     },
     extend: {
       colors: {

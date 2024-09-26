@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as SharedConstants from "../Pages/SharedConstants";
+import * as SharedConstants from "../../Pages/SharedConstants";
 
 /**
  * App state
@@ -10,31 +10,30 @@ type AppState = {
 
 /**
  * State of the AppContextProvider
- * @property appStat - The app state
+ * @property appState - The app state
  * @property setAppState - Function to update the app state
  */
-type AppContextProviderState = {
+export type AppContextProviderState = {
     appState: AppState;
     setAppState: React.Dispatch<React.SetStateAction<AppState>>;
     setSelectedPostsPage: (selectedPostsPage: SharedConstants.PostPageKey) => void;
 };
-
-const AppContext = React.createContext<AppContextProviderState>({
-    appState: {
-        selectedPostsPage: SharedConstants.PostPageKey.systemDesign,
-    },
-    setAppState: () => null,
-    setSelectedPostsPage: () => null,
-});
 
 export type AppContextProviderProps = {
     selectedPostsPage?: SharedConstants.PostPageKey;
     children: React.ReactNode;
 };
 
-export type AppContextConsumerProps = {
-    children: (appState: AppContextProviderState) => React.ReactNode;
-};
+/**
+ * Initialization of the AppContext
+ */
+export const AppContext = React.createContext<AppContextProviderState>({
+    appState: {
+        selectedPostsPage: SharedConstants.PostPageKey.systemDesign,
+    },
+    setAppState: () => null,
+    setSelectedPostsPage: () => null,
+});
 
 export const AppContextProvider = ({
     children,
@@ -53,11 +52,9 @@ export const AppContextProvider = ({
     );
 };
 
-export const AppContextConsumer: React.FC<AppContextConsumerProps> = ({ children }) => {
-    const appState = React.useContext(AppContext);
-    return children(appState);
-};
-
+/**
+ * hook to get the app context, this must be used within a sub-component of the AppContextProvider
+ */
 export const useAppContext = () => {
     const context = React.useContext(AppContext);
 

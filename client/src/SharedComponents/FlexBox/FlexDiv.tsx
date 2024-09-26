@@ -16,7 +16,7 @@ export const FlexDiv: React.FC<React.PropsWithChildren<FlexDivProps>> = ({
             className={cn(
                 `flex flex-nowrap text-ellipsis w-auto h-auto box-border ${
                     // if horizontal is undefined, use className to determine flex direction
-                    horizontal ?? (horizontal ? "flex-row" : "flex-col")
+                    horizontal ? "flex-row" : "flex-col"
                 }`,
                 className
             )}

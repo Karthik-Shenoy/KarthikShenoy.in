@@ -11,19 +11,19 @@ import { FlexItem } from "../../../SharedComponents/FlexBox/FlexItem";
 import { useTheme } from "../../../Contexts/ThemeProvider";
 import { BadgeWrapper } from "../../../SharedComponents/Badges/Badge";
 import { Image } from "../../../SharedComponents/Image/Image";
-import { GridDiv } from "../../../SharedComponents/Grid/GridDiv";
 
 const StringsManager = {
     HeroMainSectionTitle: "Bits About Me",
 };
 
-const MainSection: React.FC = () => {
+const HeroMainSection: React.FC = () => {
     const [title, setTitle] = React.useState<string>(StringsManager.HeroMainSectionTitle);
     const intervalCallbackRef = React.useRef<NodeJS.Timeout>();
 
     const { theme } = useTheme();
 
     const titleMouseEnterHandler = React.useCallback(() => {
+        intervalCallbackRef.current && clearInterval(intervalCallbackRef.current);
         randomBinaryFillerAnimation(title, setTitle, intervalCallbackRef);
     }, [title, setTitle]);
 
@@ -46,7 +46,7 @@ const MainSection: React.FC = () => {
     return (
         <FlexDiv className="desktop:gap-x-10 gap-y-10 desktop:flex-row flex-col items-center justify-center p-[10px]">
             <FlexItem className="desktop:w-7/12">
-                <Card className="shadow-lg desktop:px-5 border-[0px]">
+                <Card className="shadow-lg desktop:px-5">
                     <CardHeader>
                         <CardTitle
                             className="desktop:text-2xl text-lg w-fit hover:text-primary border-b-primary border-b-4 hover:translate-x-[20px] duration-300"
@@ -75,24 +75,20 @@ const MainSection: React.FC = () => {
                     </CardHeader>
                     <CardFooter>
                         <FlexDiv className="desktop:gap-x-4 gap-y-4 desktop:flex-row flex-col">
-                            <FlexItem>
-                                <CardTitle
-                                    className="desktop:text-xl text-md w-fit hover:text-primary border-b-primary border-b-4  duration-300"
-                                    onMouseEnter={titleMouseEnterHandler}
-                                    onMouseLeave={titleMouseLeaveHandler}
-                                >
-                                    My Interests
-                                </CardTitle>
-                            </FlexItem>
-                            <FlexItem>
-                                <GridDiv className="desktop:grid-cols-4 grid-cols-2 ">
-                                    <BadgeWrapper>C++</BadgeWrapper>
-                                    <BadgeWrapper>TypeScript</BadgeWrapper>
-                                    <BadgeWrapper>Go</BadgeWrapper>
-                                    <BadgeWrapper>Rust</BadgeWrapper>
-                                    <BadgeWrapper>Distributed Systems</BadgeWrapper>
-                                </GridDiv>
-                            </FlexItem>
+                            <CardTitle
+                                className="desktop:text-xl text-md w-fit hover:text-primary border-b-primary border-b-4  duration-300"
+                                onMouseEnter={titleMouseEnterHandler}
+                                onMouseLeave={titleMouseLeaveHandler}
+                            >
+                                My Interests
+                            </CardTitle>
+                            <FlexDiv horizontal={true} className="gap-x-2">
+                                <BadgeWrapper>C++</BadgeWrapper>
+                                <BadgeWrapper>TypeScript</BadgeWrapper>
+                                <BadgeWrapper>Go</BadgeWrapper>
+                                <BadgeWrapper>Rust</BadgeWrapper>
+                                <BadgeWrapper>Distributed Systems</BadgeWrapper>
+                            </FlexDiv>
                         </FlexDiv>
                     </CardFooter>
                 </Card>
@@ -112,10 +108,10 @@ const MainSection: React.FC = () => {
     );
 };
 
-export default MainSection;
+export default HeroMainSection;
 
 /**
- * launches a random binary filler animation on the given title
+ * Lunches
  */
 const randomBinaryFillerAnimation = (
     title: string,
