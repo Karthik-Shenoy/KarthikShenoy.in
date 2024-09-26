@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	http.Handle("/projects/", utils.CorsMiddleWare(http.MethodGet, projects_controller.ProjectsController))
+	http.Handle("/projects", utils.CorsMiddleWare(http.MethodGet, projects_controller.ProjectsController))
 
 	fmt.Println("Server starting on: 127.0.0.1:3000")
 

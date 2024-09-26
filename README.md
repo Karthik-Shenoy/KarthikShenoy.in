@@ -1,4 +1,9 @@
 # KarthikShenoy.in
 
-
-<!-- Please keep in mind that GitHub markdown uses --- to create horizontal lines as well, but it's used for creating tables and it's not recommended to use it as a separator between sections. -->
+### Migrating database 
+- `at local machine` pg_dump -U test -d PortfolioWebSite -f WebSiteData.sql -v
+- push to git hub, and pull at remote
+- copy the `database_backup.sql` file to a folder which postgresql can access
+- `at remote`: sudo -i -u postgres
+    - go into the backup directory
+    - `psql -U postgres -d PortfolioWebSite -f WebSiteData.sql`
