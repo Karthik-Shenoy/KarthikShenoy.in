@@ -5,7 +5,7 @@
 -- Dumped from database version 16.4
 -- Dumped by pg_dump version 16.4
 
--- Started on 2024-09-26 23:13:36
+-- Started on 2024-09-27 01:34:36
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -74,7 +74,8 @@ CREATE TABLE public.projects (
     imgurl text,
     techstack text[],
     id integer NOT NULL,
-    doclink text
+    doclink text,
+    demolink text
 );
 
 
@@ -137,9 +138,9 @@ COPY public.posts (id, title, description, tags, posted_date) FROM stdin;
 -- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.projects (title, description, imgurl, techstack, id, doclink) FROM stdin;
-Word Roulette	Word Roulette is a round-based multiplayer game, similar to roulette, using WebSockets for interactive gameplay, built with JavaScript and Go.	./ProjectIcons/WordRoulette.png	{React,TypeScript,TailwindCSS,Go}	1	\N
-CustomDB	The project enables spawning a database with either LSM trees or SSTables as the storage engine. It features a middle layer written in Go that communicates with clients via HTTP and the database via UDP. The complete logic, from the query engine to the storage engine, is implemented in C++	./ProjectIcons/CustomDB.png	{React,TypeScript,C++,GO}	2	\N
+COPY public.projects (title, description, imgurl, techstack, id, doclink, demolink) FROM stdin;
+Word Roulette	Word Roulette is a round-based multiplayer game, similar to roulette, using WebSockets for interactive gameplay, built with JavaScript and Go.	./ProjectIcons/WordRoulette.png	{React,TypeScript,TailwindCSS,Go}	1		
+CustomDB	The project enables spawning a database with either LSM trees or SSTables as the storage engine. It features a middle layer written in Go that communicates with clients via HTTP and the database via UDP. The complete logic, from the query engine to the storage engine, is implemented in C++	./ProjectIcons/CustomDB.png	{React,TypeScript,C++,GO}	2		
 \.
 
 
@@ -179,7 +180,7 @@ ALTER TABLE ONLY public.projects
     ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
 
 
--- Completed on 2024-09-26 23:13:39
+-- Completed on 2024-09-27 01:34:41
 
 --
 -- PostgreSQL database dump complete
