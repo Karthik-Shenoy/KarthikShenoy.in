@@ -13,12 +13,15 @@ import { Button } from "@shadcn-ui/components/ui/button";
 import { GridDiv } from "../../../SharedComponents/Grid/GridDiv";
 import { Image } from "../../../SharedComponents/Image/Image";
 import { GradientBorderWrapper } from "../../../SharedComponents/GradientWrapper/GradientWrapper";
+import { redirect } from "react-router-dom";
 
 export type ProjectCardProps = {
     title: string;
     description: string;
     imgUrl: string;
     techStack: string[];
+    docLink: string;
+    demoLink: string;
 };
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -26,6 +29,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     description,
     techStack,
     imgUrl,
+    demoLink,
 }) => {
     return (
         <GradientBorderWrapper className="w-fit h-fit">
@@ -52,7 +56,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                             ))}
                         </GridDiv>
                         <FlexDiv horizontal={true} className="gap-x-2 mt-2 self-end">
-                            <Button variant={"default"} size={"sm"} className="text-sm px-2 h-7">
+                            <Button
+                                variant={"default"}
+                                size={"sm"}
+                                className="text-sm px-2 h-7"
+                                onClick={() => {
+                                    redirect(demoLink);
+                                }}
+                            >
                                 View demo
                             </Button>
                             <Button variant={"default"} size={"sm"} className="text-sm px-2 h-7">
