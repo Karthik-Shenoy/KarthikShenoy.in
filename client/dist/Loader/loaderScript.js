@@ -11,7 +11,3 @@ reactScript &&
     (reactScript.onload = () => {
         removeLoader();
     });
-
-if (reactScript?.readyState == "complete") {
-    removeLoader();
-}

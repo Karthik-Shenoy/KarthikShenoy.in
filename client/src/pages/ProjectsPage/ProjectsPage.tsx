@@ -15,7 +15,7 @@ export const ProjectsPage: React.FC = () => {
     } = useQuery({
         queryKey: ["projects"],
         queryFn: async () => {
-            const response = await fetch("http://127.0.0.1:3000/projects");
+            const response = await fetch("/projects");
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
