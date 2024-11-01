@@ -51,7 +51,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <CardFooter className="w-full">
                     <FlexDiv horizontal={false} className="w-full gap-y-2">
                         <FlexItem className="justify-self-start">
-                            <Title text={"Tech Stack"} className="desktop:text-lg text-md" />
+                            <Title text={"Tech Stack"} className="desktop:text-lg text-md pb-[1px]" />
                         </FlexItem>
                         <GridDiv className={"desktop:grid-cols-3 grid-cols-2 gap-2"}>
                             {techStack.map((tech) => (

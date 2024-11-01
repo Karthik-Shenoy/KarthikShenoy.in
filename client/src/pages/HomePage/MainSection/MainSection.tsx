@@ -8,31 +8,39 @@ import {
 } from "@shadcn-ui/components/ui/card";
 import { FlexDiv } from "../../../SharedComponents/FlexBox/FlexDiv";
 import { FlexItem } from "../../../SharedComponents/FlexBox/FlexItem";
-import { useTheme } from "../../../Contexts/ThemeProvider";
 import { BadgeWrapper } from "../../../SharedComponents/Badges/Badge";
-import { Image } from "../../../SharedComponents/Image/Image";
 import { GridDiv } from "../../../SharedComponents/Grid/GridDiv";
+import { Title } from "../../../AppComponents/Typography";
 
 const StringsManager = {
     HeroMainSectionTitle: "Bits About Me",
+    InterestsSectionTitle: "My Interests",
 };
 
 const MainSection: React.FC = () => {
     const [title, setTitle] = React.useState<string>(StringsManager.HeroMainSectionTitle);
+    const [interestsSectionTitle, setInterestsSectionTitle] = React.useState<string>(
+        StringsManager.InterestsSectionTitle
+    );
     const intervalCallbackRef = React.useRef<NodeJS.Timeout>();
 
-    const { theme } = useTheme();
+    const titleMouseEnterHandler = React.useCallback(
+        (title: string, setTitle: React.Dispatch<React.SetStateAction<string>>) => {
+            randomBinaryFillerAnimation(title, setTitle, intervalCallbackRef);
+        },
+        []
+    );
 
-    const titleMouseEnterHandler = React.useCallback(() => {
-        randomBinaryFillerAnimation(title, setTitle, intervalCallbackRef);
-    }, [title, setTitle]);
-
-    const titleMouseLeaveHandler = React.useCallback(() => {
-        if (intervalCallbackRef.current) {
-            clearInterval(intervalCallbackRef.current);
-        }
-        setTitle(StringsManager.HeroMainSectionTitle);
-    }, [setTitle]);
+    const titleMouseLeaveHandler = React.useCallback(
+        (title: string, setTitle: React.Dispatch<React.SetStateAction<string>>) => {
+            console.log("Mouse Leave", title);
+            if (intervalCallbackRef.current) {
+                clearInterval(intervalCallbackRef.current);
+            }
+            setTitle(title);
+        },
+        []
+    );
 
     React.useEffect(() => {
         // Cleanup
@@ -45,15 +53,18 @@ const MainSection: React.FC = () => {
 
     return (
         <FlexDiv className="desktop:gap-x-10 gap-y-10 desktop:flex-row flex-col items-center justify-center p-[10px]">
-            <FlexItem className="desktop:w-7/12">
+            <FlexItem className="desktop:w-11/12">
                 <Card className="shadow-lg desktop:px-5 border-[0px]">
                     <CardHeader>
-                        <CardTitle
-                            className="desktop:text-2xl text-lg w-fit hover:text-primary border-b-primary border-b-4 hover:translate-x-[20px] duration-300"
-                            onMouseEnter={titleMouseEnterHandler}
-                            onMouseLeave={titleMouseLeaveHandler}
-                        >
-                            {title}
+                        <CardTitle>
+                            <Title
+                                text={title}
+                                className="pb-1 hover:text-primary"
+                                onMouseEnter={() => titleMouseEnterHandler(title, setTitle)}
+                                onMouseLeave={() => {
+                                    titleMouseLeaveHandler(StringsManager.HeroMainSectionTitle, setTitle);
+                                }}
+                            />
                         </CardTitle>
                         <CardDescription className="desktop:text-lg text-sm flex flex-col gap-y-4 text-justify ">
                             <span>
@@ -76,16 +87,25 @@ const MainSection: React.FC = () => {
                     <CardFooter>
                         <FlexDiv className="desktop:gap-x-4 gap-y-4 desktop:flex-row flex-col">
                             <FlexItem>
-                                <CardTitle
-                                    className="desktop:text-xl text-md w-fit hover:text-primary border-b-primary border-b-4  duration-300"
-                                    onMouseEnter={titleMouseEnterHandler}
-                                    onMouseLeave={titleMouseLeaveHandler}
-                                >
-                                    My Interests
-                                </CardTitle>
+                                <Title
+                                    className="desktop:text-xl text-md w-fit hover:text-primary duration-300 pb-[1px]"
+                                    onMouseEnter={() =>
+                                        titleMouseEnterHandler(
+                                            interestsSectionTitle,
+                                            setInterestsSectionTitle
+                                        )
+                                    }
+                                    onMouseLeave={() =>
+                                        titleMouseLeaveHandler(
+                                            StringsManager.InterestsSectionTitle,
+                                            setInterestsSectionTitle
+                                        )
+                                    }
+                                    text={interestsSectionTitle}
+                                />
                             </FlexItem>
                             <FlexItem>
-                                <GridDiv className="desktop:grid-cols-4 grid-cols-2 ">
+                                <GridDiv className="desktop:grid-cols-6 grid-cols-2 ">
                                     <BadgeWrapper>C++</BadgeWrapper>
                                     <BadgeWrapper>TypeScript</BadgeWrapper>
                                     <BadgeWrapper>Go</BadgeWrapper>
@@ -96,17 +116,6 @@ const MainSection: React.FC = () => {
                         </FlexDiv>
                     </CardFooter>
                 </Card>
-            </FlexItem>
-            <FlexItem>
-                <Image
-                    src="./HeroSectionImage.png"
-                    alt="Karthik's photo"
-                    width={300}
-                    height={270}
-                    className={`rounded-3xl shadow-xl border-[1px] border-accent ${
-                        theme == "light" && "border-gray-400"
-                    }`}
-                />
             </FlexItem>
         </FlexDiv>
     );
