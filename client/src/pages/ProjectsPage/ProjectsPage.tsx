@@ -20,29 +20,7 @@ export const ProjectsPage: React.FC = () => {
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
-            // let projects = await response.json();
-            let projects = [
-                {
-                    title: "Word Roulette",
-                    description:
-                        "Word Roulette is a round-based multiplayer game, similar to roulette, using WebSockets for interactive gameplay, built with JavaScript and Go.",
-                    imgUrl: "./ProjectIcons/WordRoulette.png",
-                    techStack: ["React", "TypeScript", "TailwindCSS", "Go"],
-                    id: 1,
-                    docLink: "",
-                    demoLink: "https://karthik.shenoyk.com/demo/word-roulette",
-                },
-                {
-                    title: "CustomDB",
-                    description:
-                        "The project enables spawning a database with either LSM trees or SSTables as the storage engine. It features a middle layer written in Go that communicates with clients via HTTP and the database via UDP. The complete logic, from the query engine to the storage engine, is implemented in C++",
-                    imgUrl: "./ProjectIcons/CustomDB.png",
-                    techStack: ["React", "TypeScript", "C++", "GO"],
-                    id: 2,
-                    docLink: "",
-                    demoLink: "https://karthik.shenoyk.com/demo/db-profiler",
-                },
-            ];
+            let projects = await response.json();
             return projects as ProjectCardProps[];
         },
     });

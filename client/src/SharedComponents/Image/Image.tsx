@@ -4,8 +4,8 @@ import { Skeleton } from "@shadcn-ui/components/ui/skeleton";
 export type ImageProps = {
     src: string;
     alt: string;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
     className?: string;
 };
 
@@ -21,9 +21,11 @@ export const Image: React.FC<ImageProps> = ({ src, alt, width, height, className
     const downloadAndCreateImageElement = React.useMemo(() => {
         const img = document.createElement("img");
         img.src = src;
-
-        img.width = width;
-        img.height = height;
+        
+        if (width && height) {
+            img.width = width;
+            img.height = height;
+        }
         img.className = className || "";
         img.alt = alt;
 
