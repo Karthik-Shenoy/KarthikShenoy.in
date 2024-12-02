@@ -11,6 +11,7 @@ export const AnimatedHeroSection: React.FC = () => {
             <Image
                 src="./HeroSectionBackground.png"
                 className="absolute top-0 left-0 z-0 h-full w-full rounded-3xl"
+                alt="Hero Section Background"
             ></Image>
             <FlexDiv className="absolute top-0 left-0 z-10 w-full h-full justify-center items-center font-sans p-4 gap-y-2">
                 <h1
