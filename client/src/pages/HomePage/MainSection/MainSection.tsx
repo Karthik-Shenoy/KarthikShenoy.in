@@ -62,7 +62,10 @@ const MainSection: React.FC = () => {
                                 className="pb-1 hover:text-primary"
                                 onMouseEnter={() => titleMouseEnterHandler(title, setTitle)}
                                 onMouseLeave={() => {
-                                    titleMouseLeaveHandler(StringsManager.HeroMainSectionTitle, setTitle);
+                                    titleMouseLeaveHandler(
+                                        StringsManager.HeroMainSectionTitle,
+                                        setTitle
+                                    );
                                 }}
                             />
                         </CardTitle>
@@ -78,9 +81,10 @@ const MainSection: React.FC = () => {
                                 posts or videos.
                             </span>
                             <span>
-                                I believe in keeping systems simple, clean, and adaptable, ensuring
-                                they remain flexible, maintainable, and focused on like performance,
-                                reliability, scalability, and security
+                                I believe in designing systems that are simple, clean, and
+                                adaptable, ensuring they remain flexible and maintainable while
+                                prioritizing key principles like performance, reliability,
+                                scalability, and security.
                             </span>
                         </CardDescription>
                     </CardHeader>
