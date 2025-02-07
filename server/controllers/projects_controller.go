@@ -1,4 +1,4 @@
-package projects_controller
+package controllers
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"karthikshenoy.in/backend/database"
-	projects_model "karthikshenoy.in/backend/models"
+	"karthikshenoy.in/backend/models"
 )
 
 func ProjectsController(w http.ResponseWriter, req *http.Request) {
@@ -19,7 +19,7 @@ func ProjectsController(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	projectsModel := projects_model.NewProjectsModel(db)
+	projectsModel := models.NewProjectsModel(db)
 	projects, err := projectsModel.GetProjects()
 
 	if err != nil {

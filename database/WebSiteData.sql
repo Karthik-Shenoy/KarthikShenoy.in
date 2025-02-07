@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.4
--- Dumped by pg_dump version 16.4
+-- Dumped from database version 16.6
+-- Dumped by pg_dump version 16.6
 
--- Started on 2024-09-27 01:34:36
+-- Started on 2025-02-07 18:11:45
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,10 +29,11 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.posts (
     id integer NOT NULL,
-    title character varying(50),
+    title text,
     description text,
     tags text[],
-    posted_date date
+    posted_date date,
+    category text NOT NULL
 );
 
 
@@ -128,7 +129,8 @@ ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.pro
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.posts (id, title, description, tags, posted_date) FROM stdin;
+COPY public.posts (id, title, description, tags, posted_date, category) FROM stdin;
+1	How Shared-Nothing Architecture Scales Even on a Single Node	Breaking the preconceived notion that multiple threads are inefficient for low I/O overhead due to synchronization overhead and context switching! Explore how DragonflyDB leverages a shared-nothing architecture to maximize performance by splitting partitions across cores, unlike Redis' single-threaded event loop	{"low level design","high level design",multi-threading}	2025-02-07	Low level design
 \.
 
 
@@ -139,8 +141,8 @@ COPY public.posts (id, title, description, tags, posted_date) FROM stdin;
 --
 
 COPY public.projects (title, description, imgurl, techstack, id, doclink, demolink) FROM stdin;
-Word Roulette	Word Roulette is a round-based multiplayer game, similar to roulette, using WebSockets for interactive gameplay, built with JavaScript and Go.	./ProjectIcons/WordRoulette.png	{React,TypeScript,TailwindCSS,Go}	1		
-CustomDB	The project enables spawning a database with either LSM trees or SSTables as the storage engine. It features a middle layer written in Go that communicates with clients via HTTP and the database via UDP. The complete logic, from the query engine to the storage engine, is implemented in C++	./ProjectIcons/CustomDB.png	{React,TypeScript,C++,GO}	2		
+Word Roulette	Word Roulette is a round-based multiplayer game, similar to roulette, using WebSockets for interactive gameplay, built with JavaScript and Go.	./ProjectIcons/WordRoulette.png	{React,TypeScript,TailwindCSS,Go}	1		https://karthik.shenoyk.com/demo/word-roulette
+CustomDB	The project enables spawning a database with either LSM trees or SSTables as the storage engine. It features a middle layer written in Go that communicates with clients via HTTP and the database via UDP. The complete logic, from the query engine to the storage engine, is implemented in C++	./ProjectIcons/CustomDB.png	{React,TypeScript,C++,GO}	2		https://karthik.shenoyk.com/demo/db-profiler/
 \.
 
 
@@ -150,7 +152,7 @@ CustomDB	The project enables spawning a database with either LSM trees or SSTabl
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 1, false);
+SELECT pg_catalog.setval('public.posts_id_seq', 1, true);
 
 
 --
@@ -180,7 +182,7 @@ ALTER TABLE ONLY public.projects
     ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
 
 
--- Completed on 2024-09-27 01:34:41
+-- Completed on 2025-02-07 18:11:50
 
 --
 -- PostgreSQL database dump complete

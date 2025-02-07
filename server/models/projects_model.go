@@ -1,4 +1,4 @@
-package projects_model
+package models
 
 import (
 	"github.com/lib/pq"

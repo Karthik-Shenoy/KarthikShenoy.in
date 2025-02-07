@@ -16,7 +16,7 @@ func CorsMiddleWare(method string, handler http.HandlerFunc) http.HandlerFunc {
 		if req.Method == method {
 			handler(w, req)
 		} else {
-			w.WriteHeader(405)
+			w.WriteHeader(http.StatusMethodNotAllowed)
 		}
 	}
 }
