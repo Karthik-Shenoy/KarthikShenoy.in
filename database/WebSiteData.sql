@@ -5,7 +5,7 @@
 -- Dumped from database version 16.6
 -- Dumped by pg_dump version 16.6
 
--- Started on 2025-02-07 18:11:45
+-- Started on 2025-02-08 00:28:18
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +32,7 @@ CREATE TABLE public.posts (
     title text,
     description text,
     tags text[],
-    posted_date date,
+    create_at date,
     category text NOT NULL
 );
 
@@ -129,8 +129,8 @@ ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.pro
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.posts (id, title, description, tags, posted_date, category) FROM stdin;
-1	How Shared-Nothing Architecture Scales Even on a Single Node	Breaking the preconceived notion that multiple threads are inefficient for low I/O overhead due to synchronization overhead and context switching! Explore how DragonflyDB leverages a shared-nothing architecture to maximize performance by splitting partitions across cores, unlike Redis' single-threaded event loop	{"low level design","high level design",multi-threading}	2025-02-07	Low level design
+COPY public.posts (id, title, description, tags, create_at, category) FROM stdin;
+1	How Shared-Nothing Architecture Scales Even on a Single Node	Breaking the preconceived notion that multiple threads are inefficient for low I/O overhead due to synchronization overhead and context switching! Explore how DragonflyDB leverages a shared-nothing architecture to maximize performance by splitting partitions across cores, unlike Redis' single-threaded event loop	{"low level design","high level design",multi-threading}	2025-02-07	low-level-design
 \.
 
 
@@ -182,7 +182,7 @@ ALTER TABLE ONLY public.projects
     ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
 
 
--- Completed on 2025-02-07 18:11:50
+-- Completed on 2025-02-08 00:28:22
 
 --
 -- PostgreSQL database dump complete
