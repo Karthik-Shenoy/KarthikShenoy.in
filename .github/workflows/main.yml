@@ -29,11 +29,12 @@ jobs:
             cd ~/myWebSite/KarthikShenoy.in/
             git pull origin main
 
+            # Skipping this courrently due to build issues
             # Build Vite React App
-            echo "Building Vite React App..."
-            cd ~/myWebSite/KarthikShenoy.in/client/
-            npm install
-            npm run build
+            # echo "Building Vite React App..."
+            # cd ~/myWebSite/KarthikShenoy.in/client/
+            # npm install
+            # npm run build
 
             # Copy dist to /var/www/dist_root
             echo "Copying dist to /var/www/dist_root..."
