@@ -19,6 +19,19 @@ jobs:
           echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+      - name: Deploy Database
+        run: |
+          # we start by killing the existing go process connected to the DB
+          sudo kill -9 $(sudo lsof -t -i:3000) || true  # Kill existing process if running
+          cd ~/myWebSite/KarthikShenoy.in/
+          sudo cp -r ./ database/* /database_backups
+          sudo -i -u postgres
+          psql
+          DROP DATABASE "PortfolioWebSite";
+          CREATE DATABASE "PortfolioWebSite";
+          exit
+          cd /database_backups
+          psql -U postgres -d PortfolioWebSite -f WebSiteData.sql
 
       - name: Deploy and Build on VM
         run: |
@@ -46,7 +59,6 @@ jobs:
             go mod tidy
             go build -o server main.go
             chmod +x server
-            sudo kill -9 $(sudo lsof -t -i:3000) || true  # Kill existing process if running
             nohup ./main > nohup.out 2>&1 &  # Run in background
 
             # Restart Nginx
