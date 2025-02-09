@@ -49,9 +49,10 @@ jobs:
             psql
             DROP DATABASE "PortfolioWebSite";
             CREATE DATABASE "PortfolioWebSite";
-            exit
+            exit;
             cd /database_backups
             psql -U postgres -d PortfolioWebSite -f WebSiteData.sql
+            exit;
             
             # Build and Run Go Backend
             echo "Building Go Backend..."
