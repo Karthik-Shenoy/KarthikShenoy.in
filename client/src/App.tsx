@@ -7,6 +7,7 @@ import { PostsPage } from "./Pages/PostsPage/PostsPage";
 import { BasePage } from "./Pages/BasePage/BasePage";
 import { ProjectsPage } from "./Pages/ProjectsPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ViewPostPage } from "./Pages/ViewPostPage/ViewPostPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
                                 <Routes>
                                     <Route path="/" element={<HomePage />} />
                                     <Route path="/posts" element={<PostsPage />} />
+                                    <Route path="/posts/:postId" element={<ViewPostPage />} />
                                     <Route path="/project" element={<ProjectsPage />} />
                                 </Routes>
                             </BasePage>

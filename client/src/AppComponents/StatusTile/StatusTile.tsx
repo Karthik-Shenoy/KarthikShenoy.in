@@ -8,7 +8,8 @@ export enum StatusTileType {
     WARNING = "warning",
     INFO = "info",
     SUCCESS = "success",
-    NODATA = "nodata"
+    NODATA = "nodata",
+    LOADING = "loading"
 }
 
 export type StatusTileProps = {
@@ -31,6 +32,13 @@ export const StatusTile: React.FC<StatusTileProps> = ({ type }) => {
                     <TileWrapper>
                         <Image src="./SharedIcons/sorry.png" alt="nodata" width={256} height={256} />
                         <Title text="Sorry! No data found" className="text-3xl" />
+                    </TileWrapper>
+                )
+            case StatusTileType.LOADING:
+                return (
+                    <TileWrapper>
+                        <Image src="./SharedIcons/sand-clock.png" className="animate-spin duration-1000" alt="loading" width={192} height={192} />
+                        <Title text="Loading..." className="text-3xl" />
                     </TileWrapper>
                 )
 

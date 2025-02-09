@@ -28,6 +28,11 @@ export const PostsPage: React.FC = () => {
             return projects as PostsCardProps[];
         },
     });
+
+    // const onPostClick = (postId: string) => {
+
+    // };
+
     const postsSkeleton = React.useMemo(() => (
         <GridDiv>
             {Array.from({ length: 4 }).map(
@@ -35,6 +40,7 @@ export const PostsPage: React.FC = () => {
             )}
         </GridDiv>
     ), []);
+
     const renderedPostsList = React.useMemo(() => {
         if (posts?.length == 0) return <StatusTile type={StatusTileType.NODATA} />;
         return (
@@ -43,6 +49,7 @@ export const PostsPage: React.FC = () => {
             </GridDiv>
         );
     }, [posts]);
+
     return (
         <AppContextConsumer>
             {({ appState }) => {
