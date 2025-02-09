@@ -23,7 +23,7 @@ function App() {
                                 <Routes>
                                     <Route path="/" element={<HomePage />} />
                                     <Route path="/posts" element={<PostsPage />} />
-                                    <Route path="/posts/:postId" element={<ViewPostPage />} />
+                                    <Route path="/posts/:postDir" element={<ViewPostPage />} />
                                     <Route path="/project" element={<ProjectsPage />} />
                                 </Routes>
                             </BasePage>
