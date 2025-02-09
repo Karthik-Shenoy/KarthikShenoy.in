@@ -34,25 +34,101 @@ jobs:
             sudo cp -r ~/myWebSite/KarthikShenoy.in/client/dist/* /var/www/dist_root
 
             # Deploy database
-            # we start by killing the existing go process connected to the DB
-            sudo kill -9 $(sudo lsof -t -i:3000) || true  # Kill existing process if running
+            # Kill existing process on port 3000 (if running)
+            sudo kill -9 $(sudo lsof -t -i:3000) || true  
+            
+            # Navigate to project directory
             cd ~/myWebSite/KarthikShenoy.in/
-            sudo cp -r ./ database/* /database_backups
-            sudo -i -u postgres
-            psql
-            DROP DATABASE "PortfolioWebSite";
-            CREATE DATABASE "PortfolioWebSite";
-            exit;
+            
+            # Backup existing database files
+            sudo cp -r ./database/* /database_backups  
+            
+            # Switch to postgres user and execute psql commands
+            sudo -i -u postgres bash <<EOF
+            psql -c 'DROP DATABASE "PortfolioWebSite";'
+            psql -c 'CREATE DATABASE "PortfolioWebSite";'
+            exit
+            EOF
+            
+            # Restore the backup
             cd /database_backups
             psql -U postgres -d PortfolioWebSite -f WebSiteData.sql
-            exit;
+
+            # Restart PostgreSQL
             sudo systemctl restart postgresql
+
             
             # Build and Run Go Backend
             echo "Building Go Backend..."
             cd ~/myWebSite/KarthikShenoy.in/server
             go mod tidy
+            go build -o server main.goname: Deploy Vite React & Go Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Pull Latest Changes
+        run: |
+          ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
+            cd ~/myWebSite/KarthikShenoy.in/
+            git pull origin main
+          EOF
+
+      - name: Copy Dist Files to Web Root
+        run: |
+          ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
+            sudo cp -r ~/myWebSite/KarthikShenoy.in/client/dist/* /var/www/dist_root
+          EOF
+
+      - name: Restart Database
+        run: |
+          ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
+            sudo kill -9 $(sudo lsof -t -i:3000) || true
+            sudo cp -r ~/myWebSite/KarthikShenoy.in/database/* /database_backups  
+            sudo -i -u postgres bash <<EOSQL
+            psql -c 'DROP DATABASE "PortfolioWebSite";'
+            psql -c 'CREATE DATABASE "PortfolioWebSite";'
+            EOSQL
+            psql -U postgres -d PortfolioWebSite -f /database_backups/WebSiteData.sql
+            sudo systemctl restart postgresql
+          EOF
+
+      - name: Build and Run Go Backend
+        run: |
+          ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
+            cd ~/myWebSite/KarthikShenoy.in/server
+            go mod tidy
             go build -o server main.go
+            chmod +x server
+            nohup ./server > nohup.out 2>&1 &
+          EOF
+
+      - name: Restart Nginx
+        run: |
+          ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
+            sudo systemctl restart nginx
+          EOF
+
+      - name: Deployment Complete
+        run: echo "Deployment finished successfully!"
+
             chmod +x server
             nohup ./main > nohup.out 2>&1 &  # Run in background
 
