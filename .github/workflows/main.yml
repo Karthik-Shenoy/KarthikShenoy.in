@@ -19,7 +19,7 @@ jobs:
           echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
-
+          
       - name: Deploy and Build on VM
         run: |
           ssh ${{ secrets.VM_USER_NAME }}@${{ secrets.VM_HOST }} << 'EOF'
@@ -29,15 +29,30 @@ jobs:
             cd ~/myWebSite/KarthikShenoy.in/
             git pull origin main
 
+            # Skipping this courrently due to build issues
             # Build Vite React App
-            echo "Building Vite React App..."
-            cd ~/myWebSite/KarthikShenoy.in/client/
-            npm install
-            npm run build
+            # echo "Building Vite React App..."
+            # cd ~/myWebSite/KarthikShenoy.in/client/
+            # npm install
+            # npm run build
 
             # Copy dist to /var/www/dist_root
             echo "Copying dist to /var/www/dist_root..."
             sudo cp -r ~/myWebSite/KarthikShenoy.in/client/dist/* /var/www/dist_root
+
+            # Deploy database
+            # we start by killing the existing go process connected to the DB
+            sudo kill -9 $(sudo lsof -t -i:3000) || true  # Kill existing process if running
+            cd ~/myWebSite/KarthikShenoy.in/
+            sudo cp -r ./ database/* /database_backups
+            sudo -i -u postgres
+            psql
+            DROP DATABASE "PortfolioWebSite";
+            CREATE DATABASE "PortfolioWebSite";
+            exit;
+            cd /database_backups
+            psql -U postgres -d PortfolioWebSite -f WebSiteData.sql
+            exit;
             
             # Build and Run Go Backend
             echo "Building Go Backend..."
@@ -45,7 +60,6 @@ jobs:
             go mod tidy
             go build -o server main.go
             chmod +x server
-            sudo kill -9 $(sudo lsof -t -i:3000) || true  # Kill existing process if running
             nohup ./main > nohup.out 2>&1 &  # Run in background
 
             # Restart Nginx
