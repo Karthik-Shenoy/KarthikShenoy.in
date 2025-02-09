@@ -39,7 +39,7 @@ jobs:
             sudo kill -9 $(sudo lsof -t -i:3000) || true
             sudo cp -r ~/myWebSite/KarthikShenoy.in/database/* /database_backups  
             echo "Resetting PostgreSQL database..."
-            sudo -u postgres psql <<EOSQL
+            sudo -u postgres psql << 'EOSQL'
             DROP DATABASE IF EXISTS "PortfolioWebSite";
             CREATE DATABASE "PortfolioWebSite";
             \c PortfolioWebSite
