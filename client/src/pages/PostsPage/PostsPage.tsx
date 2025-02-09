@@ -7,10 +7,12 @@ import { PostsCard, PostsCardProps } from "./PostsCard/PostsCard";
 import { GridDiv } from "../../SharedComponents/Grid/GridDiv";
 import { useQuery } from "@tanstack/react-query";
 import { StatusTile, StatusTileType } from "../../AppComponents/StatusTile";
+import { useNavigate } from "react-router-dom";
 
 export const PostsPage: React.FC = () => {
 
     const appContextData = useAppContext();
+    const navigate = useNavigate();
 
     const {
         isPending: isPending,
@@ -29,9 +31,12 @@ export const PostsPage: React.FC = () => {
         },
     });
 
-    // const onPostClick = (postId: string) => {
-
-    // };
+    const onPostClick = (postId?: number) => {
+        if (!postId) {
+            return;
+        }
+        navigate(`/posts/post_${postId}`)
+    };
 
     const postsSkeleton = React.useMemo(() => (
         <GridDiv>
@@ -43,9 +48,17 @@ export const PostsPage: React.FC = () => {
 
     const renderedPostsList = React.useMemo(() => {
         if (posts?.length == 0) return <StatusTile type={StatusTileType.NODATA} />;
+
         return (
             <GridDiv>
-                {posts?.map((post) => <PostsCard {...post} />)}
+                {
+                    posts?.map((postProps) => {
+                        if (!postProps.isSkeleton) {
+                            postProps.onClick = () => onPostClick(postProps.id);
+                        }
+                        return <PostsCard {...postProps} />
+                    })
+                }
             </GridDiv>
         );
     }, [posts]);

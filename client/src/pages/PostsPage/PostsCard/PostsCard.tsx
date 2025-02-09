@@ -13,6 +13,7 @@ import { Skeleton } from "@shadcn-ui/components/ui/skeleton";
 import { FlexDiv } from "../../../SharedComponents/FlexBox";
 
 export type PostsCardProps = {
+    id: number;
     title: string;
     description: string;
     tags: string[];
@@ -55,10 +56,10 @@ export const PostsCard: React.FC<PostsCardProps> = (props) => {
         )
     }
 
-    const { title, description, tags, date, onClick } = props;
+    const { id, title, description, tags, date, onClick } = props;
 
     return (
-        <PostCardWrapper onClick={onClick}>
+        <PostCardWrapper onClick={onClick} key={id}>
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
                 <CardDescription>{date}</CardDescription>

@@ -8,8 +8,8 @@ export const componentMappings: {
     h1: ({ children }) => <h1 className="text-4xl font-extrabold my-5">{children}</h1>,
     h2: ({ children }) => <h2 className="text-3xl font-semibold my-4">{children}</h2>,
     h3: ({ children }) => <h1 className="text-2xl font-semibold my-3">{children}</h1>,
-    p: ({ children }) => <p className="text-l my-2">{children}</p>,
-    ul: ({ children }) => <ul className="text-l list-disc list-inside ml-8">{children}</ul>,
+    p: ({ children }) => <p className="text-md my-2">{children}</p>,
+    ul: ({ children }) => <ul className="text-md list-disc list-inside ml-8">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal list-inside ml-4">{children}</ol>,
     li: ({ children }) => <li className="my-2">{children}</li>,
     blockquote: ({ children }) => (

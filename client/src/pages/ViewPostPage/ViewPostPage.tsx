@@ -7,16 +7,16 @@ import Markdown from "react-markdown"
 import { componentMappings } from "./MarkdownComponentMappings"
 
 export const ViewPostPage: React.FC<{}> = () => {
-    const urlParams = useParams<{ postId: string }>()
+    const urlParams = useParams<{ postDir: string }>()
     const {
         isPending: isPending,
         error: error,
         isFetching: _isFetching,
         data: postMarkdown,
     } = useQuery({
-        queryKey: ["post", urlParams.postId],
+        queryKey: ["post", urlParams.postDir],
         queryFn: async () => {
-            const response = await fetch(`/PostsMarkdown/${urlParams.postId}.md`);
+            const response = await fetch(`/PostsMarkdown/${urlParams.postDir}/Readme.md`);
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
