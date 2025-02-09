@@ -25,6 +25,7 @@ func PostsController(w http.ResponseWriter, req *http.Request) {
 	postsModel := models.NewPostsModel(db)
 
 	if err != nil {
+		fmt.Println("Error getting db instance", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -36,6 +37,7 @@ func PostsController(w http.ResponseWriter, req *http.Request) {
 	posts, err := postsModel.GetPostsByCategory(pathTokens[2])
 
 	if err != nil {
+		fmt.Println("Error getting posts", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -43,6 +45,7 @@ func PostsController(w http.ResponseWriter, req *http.Request) {
 	payload, err := json.Marshal(posts)
 
 	if err != nil {
+		fmt.Println("Error marshalling posts", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
