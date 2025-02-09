@@ -41,8 +41,8 @@ jobs:
             sudo -i -u postgres bash <<EOSQL
             psql -c 'DROP DATABASE "PortfolioWebSite";'
             psql -c 'CREATE DATABASE "PortfolioWebSite";'
-            EOSQL
             psql -U postgres -d PortfolioWebSite -f /database_backups/WebSiteData.sql
+            EOSQL
             sudo systemctl restart postgresql
           EOF
 
