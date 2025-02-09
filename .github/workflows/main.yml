@@ -28,14 +28,7 @@ jobs:
             echo "Pulling latest changes..."
             cd ~/myWebSite/KarthikShenoy.in/
             git pull origin main
-
-            # Skipping this courrently due to build issues
-            # Build Vite React App
-            # echo "Building Vite React App..."
-            # cd ~/myWebSite/KarthikShenoy.in/client/
-            # npm install
-            # npm run build
-
+            
             # Copy dist to /var/www/dist_root
             echo "Copying dist to /var/www/dist_root..."
             sudo cp -r ~/myWebSite/KarthikShenoy.in/client/dist/* /var/www/dist_root
@@ -53,6 +46,7 @@ jobs:
             cd /database_backups
             psql -U postgres -d PortfolioWebSite -f WebSiteData.sql
             exit;
+            sudo systemctl restart postgresql
             
             # Build and Run Go Backend
             echo "Building Go Backend..."
