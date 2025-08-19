@@ -6,7 +6,8 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './@shadcn-ui/**/*.{ts,tsx}'
+    './@shadcn-ui/**/*.{ts,tsx}',
+    './@react-bits/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {

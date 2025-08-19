@@ -21,6 +21,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "@shadcn-ui": path.resolve(__dirname, "./@shadcn-ui"),
+            "@react-bits": path.resolve(__dirname, "./@react-bits"),
         },
     },
 });

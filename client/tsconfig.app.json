@@ -8,7 +8,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@shadcn-ui/*": ["./@shadcn-ui/*"]
+      "@shadcn-ui/*": ["./@shadcn-ui/*"],
+      "@react-bits/*": ["./@react-bits/*"]
     },
 
     /* Bundler mode */
